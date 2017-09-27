@@ -1,3 +1,5 @@
+import "rxjs/Rx"; // add all operators to Observable
+// import "./rxjs-extensions";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
