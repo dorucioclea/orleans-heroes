@@ -39,16 +39,16 @@ namespace Heroes.Api
 			loggerFactory.AddDebug();
 
 			warmUpClient.Initialize();
-
-			app.SetGraphQLMiddleWare();
-
+            
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
-				app.UseGraphiQl();
-			}
+				//app.UseGraphiQl();
+		    }
 
-			app.UseMvc();
+		    app.SetGraphQLMiddleWare();
+
+            app.UseMvc();
 		}
 	}
 }

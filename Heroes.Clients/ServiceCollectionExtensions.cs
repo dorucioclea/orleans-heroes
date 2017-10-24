@@ -11,9 +11,9 @@ namespace Heroes.Clients
 	{
 		public static void AddHeroesClients(this IServiceCollection services)
 		{
-			services.AddScoped<IHeroClient, HeroClient>();
-			services.AddScoped<IHeroStatsClient, HeroStatsClient>();
-			services.AddScoped<IWarmUpClient, WarmUpClient>();
+			services.AddSingleton<IHeroClient, HeroClient>();
+			services.AddSingleton<IHeroStatsClient, HeroStatsClient>();
+			services.AddSingleton<IWarmUpClient, WarmUpClient>();
 		}
 	}
 }
