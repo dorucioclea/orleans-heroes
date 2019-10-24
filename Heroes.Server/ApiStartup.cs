@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Orleans;
 
 namespace Heroes.Server
@@ -55,13 +56,16 @@ namespace Heroes.Server
 
 			services.AddAppClients();
 			services.AddAppGraphQL();
-			services.AddMvc();
+
+			services.AddControllers();
+			//services.AddRazorPages();
+			//services.AddMvc();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(
 			IApplicationBuilder app,
-			IHostingEnvironment env
+			IWebHostEnvironment env
 		)
 		{
 			app.UseCors("TempCorsPolicy");
@@ -75,13 +79,22 @@ namespace Heroes.Server
 				app.UseGraphiQl();
 			}
 
-			app.UseSignalR(routes =>
+			//app.UseSignalR(routes =>
+			//{
+			//	routes.MapHub<HeroHub>("/real-time/hero");
+			//	routes.MapHub<UserNotificationHub>("/userNotifications");
+			//});
+
+			app.UseRouting();
+			app.UseAuthorization();
+
+			app.UseEndpoints(endpoints =>
 			{
-				routes.MapHub<HeroHub>("/real-time/hero");
-				routes.MapHub<UserNotificationHub>("/userNotifications");
+				endpoints.MapHub<HeroHub>("/real-time/hero");
+				endpoints.MapHub<UserNotificationHub>("/userNotifications");
+				endpoints.MapControllers();
 			});
 
-			app.UseMvc();
 		}
 	}
 }
