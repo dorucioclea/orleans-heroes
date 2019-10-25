@@ -32,7 +32,6 @@ namespace Heroes.Server
 		public ApiHostedService(
 			IOptions<ApiHostedServiceOptions> options,
 			IClusterClient client,
-			IMembershipOracle oracle,
 			IConfiguration configuration,
 			IExportLocatorScope exportScope,
 			IAppInfo appInfo,

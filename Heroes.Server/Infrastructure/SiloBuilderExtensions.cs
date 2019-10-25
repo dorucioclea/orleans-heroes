@@ -58,8 +58,8 @@ namespace Heroes.Server.Infrastructure
 				.ConfigureServices(services =>
 				{
 					//services.Configure<GrainCollectionOptions>(options => { options.CollectionAge = TimeSpan.FromMinutes(1.5); });
-				})
-				.Configure<ClusterMembershipOptions>(options => options.ExpectedClusterSize = 1);
+				});
+				//.Configure<ClusterMembershipOptions>(options => options.); // options => options.ExpectedClusterSize = 1 - removed in rc1 
 
 			return siloHost;
 		}
